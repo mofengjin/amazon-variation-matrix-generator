@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amazon Variation Matrix CSV Generator - Stop Manual Flat File Headaches</title>
+  <meta name="description" content="Generate 100% compliant Amazon Parent-Child variation matrices in seconds. Prevent Error 8016 and split listings. 100% offline.">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --dark-bg: #0f172a;
+      --card-bg: #1e293b;
+      --card-inner: #0b1329;
+      --border-color: #334155;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent-green: #10b981;
+      --accent-red: #ef4444;
+      --accent-gold: #f59e0b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--dark-bg);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .navbar {
+      border-bottom: 1px solid var(--border-color);
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 72px;
+    }
+    .brand { font-size: 1.2rem; font-weight: 700; color: #fff; }
+    .brand-badge {
+      background: #1e3a8a;
+      color: #60a5fa;
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-left: 8px;
+    }
+    .btn-cta {
+      background: var(--primary);
+      color: #fff;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+    .btn-cta:hover { background: var(--primary-hover); transform: translateY(-1px); }
+    .hero {
+      padding: 80px 0 60px;
+      text-align: center;
+    }
+    .pill {
+      display: inline-flex;
+      gap: 8px;
+      background: rgba(37, 99, 235, 0.15);
+      border: 1px solid rgba(37, 99, 235, 0.4);
+      color: #93c5fd;
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 24px;
+    }
+    .highlight-text {
+      background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #2563eb 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 800px;
+      margin: 0 auto 36px;
+    }
+    .card-wrap {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 36px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      margin-bottom: 60px;
+      text-align: left;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    @media (max-width: 900px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2.2rem; }
+    }
+    .pricing-card {
+      background: var(--card-bg);
+      border: 2px solid var(--primary);
+      border-radius: 16px;
+      padding: 40px;
+      text-align: center;
+      max-width: 500px;
+      margin: 0 auto 80px;
+    }
+    .price-big { font-size: 3.5rem; font-weight: 900; margin: 12px 0; }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <div class="brand">
+        SellerInsights <span class="brand-badge">Variation Matrix Suite</span>
+      </div>
+      <div>
+        <a id="navBuyBtn" href="https://mofengjin.gumroad.com/l/amazon-variation-generator" class="btn-cta" target="_blank" rel="noopener">
+          Get Lifetime Access ($29)
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <div class="pill">Amazon Flat File Inventory Loader Automation</div>
+      <h1>
+        Build 50+ Parent-Child Variations in 10 Seconds <br>
+        <span class="highlight-text">Without Ever Touching a 200-Column Excel Sheet</span>
+      </h1>
+      <p>
+        Eliminate Amazon Error 8016, orphan listings, and hours of tedious manual data entry. Auto-generate Cartesian variation matrices ready for Seller Central batch upload — 100% offline.
+      </p>
+
+      <div class="card-wrap">
+        <h2 style="font-size: 1.4rem; margin-bottom: 20px;">Live Variation Matrix Multiplier Demo</h2>
+        <div class="grid-2">
+          <div>
+            <div style="font-size:0.85rem; color:var(--text-muted); margin-bottom:12px;">Input your variation dimensions:</div>
+            <div style="margin-bottom:10px;">
+              <span style="font-size:0.8rem; color:#94a3b8;">Colors (4):</span>
+              <div style="font-weight:600;">Jet Black, Ocean Blue, Sage Green, Rose Pink</div>
+            </div>
+            <div style="margin-bottom:14px;">
+              <span style="font-size:0.8rem; color:#94a3b8;">Sizes (5):</span>
+              <div style="font-weight:600;">Small, Medium, Large, X-Large, XX-Large</div>
+            </div>
+            <div style="font-size:1.1rem; font-weight:700; color:var(--accent-green); margin-bottom:16px;">
+              Calculated Variations: 20 Child SKUs + 1 Parent
+            </div>
+            <div style="font-size:0.85rem; color:var(--text-muted);">
+              Manual setup time: <strong>~2.5 hours</strong><br>
+              SellerInsights generation time: <strong>< 1 second</strong>
+            </div>
+          </div>
+          <div style="background:var(--card-inner); border:1px solid var(--border-color); border-radius:8px; padding:16px; font-family:monospace; font-size:0.8rem; color:#93c5fd; overflow-x:auto;">
+            <div># Amazon Flat File Preview:</div>
+            <div style="color:#64748b;">item_sku,parentage_level,parent_sku,relationship_type...</div>
+            <div style="color:#60a5fa;">"SHORTS-P","Parent","","","ColorName-SizeName"</div>
+            <div style="color:#34d399;">"SHORTS-P-JETBLA-SMALL","Child","SHORTS-P","Variation"</div>
+            <div style="color:#34d399;">"SHORTS-P-JETBLA-MEDIUM","Child","SHORTS-P","Variation"</div>
+            <div style="color:#34d399;">"SHORTS-P-OCEANB-SMALL","Child","SHORTS-P","Variation"</div>
+            <div style="color:#64748b;">... + 17 more rows generated instantly</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pricing-card">
+        <h3 style="font-size: 1.4rem;">Get the Complete Desktop Variation Generator</h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 8px;">Run offline on any PC or Mac. Zero monthly fees.</p>
+        <div class="price-big">$29</div>
+        <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 24px;">One-time payment - Lifetime access & free updates</p>
+        <a id="cardBuyBtn" href="https://mofengjin.gumroad.com/l/amazon-variation-generator" class="btn-cta" style="width: 100%; font-size: 1.1rem; padding: 14px;" target="_blank" rel="noopener">
+          Instant Download & Lifetime Access
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="text-align: center; padding: 32px; border-top: 1px solid var(--border-color); color: #64748b; font-size: 0.85rem;">
+    SellerInsights &copy; 2026. All rights reserved. Not affiliated with Amazon.com, Inc.
+  </footer>
+
+</body>
+</html>

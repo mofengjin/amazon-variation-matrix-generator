@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amazon Variation Matrix CSV Generator - SellerInsights</title>
+  <style>
+    :root {
+      --bg-dark: #0f172a;
+      --card-bg: #1e293b;
+      --card-inner: #0b1329;
+      --border: #334155;
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --green: #10b981;
+      --red: #ef4444;
+      --gold: #f59e0b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text);
+      line-height: 1.5;
+      padding: 24px;
+    }
+    .header {
+      max-width: 1300px;
+      margin: 0 auto 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .brand h1 { font-size: 1.4rem; font-weight: 700; color: #fff; }
+    .brand p { font-size: 0.85rem; color: var(--text-muted); }
+    .badge-wrap { display: flex; gap: 8px; }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: 9999px;
+    }
+    .badge-blue {
+      background: rgba(37, 99, 235, 0.2);
+      border: 1px solid var(--primary);
+      color: #93c5fd;
+    }
+    .badge-green {
+      background: rgba(16, 185, 129, 0.2);
+      border: 1px solid var(--green);
+      color: #6ee7b7;
+    }
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 450px 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 1024px) {
+      .container { grid-template-columns: 1fr; }
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+    .input-group { margin-bottom: 16px; }
+    input[type="text"], input[type="number"], select, textarea {
+      width: 100%;
+      background: var(--card-inner);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      padding: 10px 12px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--primary); }
+    .row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .btn {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn:hover { background: var(--primary-hover); }
+    .btn-green { background: #059669; }
+    .btn-green:hover { background: #047857; }
+    .btn-secondary { background: #334155; }
+    .btn-secondary:hover { background: #475569; }
+    .table-wrap {
+      overflow-x: auto;
+      background: var(--card-inner);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      max-height: 520px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      text-align: left;
+    }
+    th {
+      background: #1e293b;
+      color: #94a3b8;
+      padding: 10px 14px;
+      position: sticky;
+      top: 0;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    td {
+      padding: 8px 14px;
+      border-bottom: 1px solid rgba(51, 65, 85, 0.4);
+      white-space: nowrap;
+    }
+    tr:hover td { background: rgba(255, 255, 255, 0.02); }
+    .tag-parent {
+      background: rgba(37, 99, 235, 0.2);
+      border: 1px solid var(--primary);
+      color: #93c5fd;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+    }
+    .tag-child {
+      background: rgba(16, 185, 129, 0.2);
+      border: 1px solid var(--green);
+      color: #6ee7b7;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="brand">
+      <h1>Amazon Variation Matrix CSV Generator</h1>
+      <p>SellerInsights Parent-Child Flat File Architect</p>
+    </div>
+    <div class="badge-wrap">
+      <span class="badge badge-green">100% In-Memory Offline</span>
+      <span class="badge badge-blue">Official Amazon Flat File Compliant</span>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- Left Configuration Panel -->
+    <div class="card">
+      <div class="card-title">
+        <span>Variation Configuration</span>
+        <button class="btn btn-secondary" onclick="loadSample()">Load Sample</button>
+      </div>
+
+      <div class="input-group">
+        <label for="parentSku">Parent SKU (Base Identifier):</label>
+        <input type="text" id="parentSku" value="YOGA-MAT-2026-P" placeholder="e.g. YOGA-MAT-PARENT">
+      </div>
+
+      <div class="input-group">
+        <label for="parentTitle">Parent Product Title Base:</label>
+        <input type="text" id="parentTitle" value="Premium Eco-Friendly Non-Slip Yoga Mat with Carry Strap" placeholder="Base title without variation suffix">
+      </div>
+
+      <div class="input-group">
+        <label for="brandName">Brand Name:</label>
+        <input type="text" id="brandName" value="ZenGrip" placeholder="Your brand name">
+      </div>
+
+      <div class="input-group">
+        <label for="themeSelect">Variation Theme:</label>
+        <select id="themeSelect" onchange="onThemeChange()">
+          <option value="ColorName-SizeName">Color & Size (ColorName-SizeName)</option>
+          <option value="ColorName">Color Only (ColorName)</option>
+          <option value="SizeName">Size Only (SizeName)</option>
+          <option value="ItemPackageQuantity">Item Package Quantity (Pack Count)</option>
+        </select>
+      </div>
+
+      <div class="input-group" id="attr1Group">
+        <label id="attr1Label">Colors (Comma separated):</label>
+        <input type="text" id="attr1Inp" value="Midnight Black, Ocean Blue, Sage Green, Rose Pink" placeholder="Black, Blue, Pink">
+      </div>
+
+      <div class="input-group" id="attr2Group">
+        <label id="attr2Label">Sizes / Dimensions (Comma separated):</label>
+        <input type="text" id="attr2Inp" value="Standard (6mm), Pro Thick (8mm), Travel Light (4mm)" placeholder="Small, Medium, Large">
+      </div>
+
+      <div class="row-2 input-group">
+        <div>
+          <label for="basePrice">Base Price ($):</label>
+          <input type="number" id="basePrice" value="28.99" step="0.5">
+        </div>
+        <div>
+          <label for="baseQty">Initial Stock Qty:</label>
+          <input type="number" id="baseQty" value="100" step="10">
+        </div>
+      </div>
+
+      <button class="btn" style="width: 100%; margin-top: 8px; justify-content: center;" onclick="generateMatrix()">
+        Generate Variation Matrix
+      </button>
+    </div>
+
+    <!-- Right Matrix Output Panel -->
+    <div class="card">
+      <div class="card-title">
+        <span>Generated Parent-Child Matrix (<span id="totalRowsCount">0</span> Records)</span>
+        <div style="display: flex; gap: 8px;">
+          <button class="btn btn-secondary" onclick="copyCsv()">Copy CSV</button>
+          <button class="btn btn-green" onclick="downloadCsv()">Download Amazon CSV</button>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>SKU</th>
+              <th>Parentage</th>
+              <th>Parent SKU</th>
+              <th>Relationship</th>
+              <th>Variation Theme</th>
+              <th>Title</th>
+              <th>Color</th>
+              <th>Size</th>
+              <th>Price</th>
+              <th>Qty</th>
+            </tr>
+          </thead>
+          <tbody id="matrixBody">
+            <!-- Populated via JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top: 16px; background: rgba(37, 99, 235, 0.1); border: 1px solid rgba(37, 99, 235, 0.3); border-radius: 8px; padding: 12px; font-size: 0.8rem; color: #93c5fd;">
+        <strong>Amazon Compliance Check:</strong> Parent item has no price or inventory (per Seller Central rules). Child items strictly inherit parent_sku and theme mapping, preventing Error 8016 and orphan listings.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentMatrixData = [];
+
+    function onThemeChange() {
+      const theme = document.getElementById('themeSelect').value;
+      const attr1Group = document.getElementById('attr1Group');
+      const attr2Group = document.getElementById('attr2Group');
+
+      if (theme === 'ColorName-SizeName') {
+        attr1Group.style.display = 'block';
+        attr2Group.style.display = 'block';
+        document.getElementById('attr1Label').textContent = 'Colors (Comma separated):';
+        document.getElementById('attr2Label').textContent = 'Sizes / Dimensions (Comma separated):';
+      } else if (theme === 'ColorName') {
+        attr1Group.style.display = 'block';
+        attr2Group.style.display = 'none';
+        document.getElementById('attr1Label').textContent = 'Colors (Comma separated):';
+      } else if (theme === 'SizeName') {
+        attr1Group.style.display = 'block';
+        attr2Group.style.display = 'none';
+        document.getElementById('attr1Label').textContent = 'Sizes (Comma separated):';
+      } else if (theme === 'ItemPackageQuantity') {
+        attr1Group.style.display = 'block';
+        attr2Group.style.display = 'none';
+        document.getElementById('attr1Label').textContent = 'Pack Counts (Comma separated, e.g. 1 Pack, 2 Pack, 4 Pack):';
+      }
+    }
+
+    function cleanList(str) {
+      return str.split(',').map(s => s.trim()).filter(s => s.length > 0);
+    }
+
+    function generateMatrix() {
+      const pSku = document.getElementById('parentSku').value.trim() || 'PARENT-SKU';
+      const pTitle = document.getElementById('parentTitle').value.trim() || 'Product Title';
+      const brand = document.getElementById('brandName').value.trim() || 'Generic';
+      const theme = document.getElementById('themeSelect').value;
+      const price = parseFloat(document.getElementById('basePrice').value) || 29.99;
+      const qty = parseInt(document.getElementById('baseQty').value, 10) || 50;
+
+      const attr1List = cleanList(document.getElementById('attr1Inp').value);
+      const attr2List = cleanList(document.getElementById('attr2Inp').value);
+
+      currentMatrixData = [];
+
+      // 1. Parent Row
+      currentMatrixData.push({
+        sku: pSku,
+        parentage: 'Parent',
+        parentSku: '',
+        relationship: '',
+        theme: theme,
+        title: pTitle,
+        color: '',
+        size: '',
+        price: '',
+        qty: ''
+      });
+
+      // 2. Child Rows
+      if (theme === 'ColorName-SizeName') {
+        for (const col of attr1List) {
+          for (const sz of attr2List) {
+            const cleanCol = col.replace(/[^a-zA-Z0-9]/g, '').toUpperCase().slice(0, 6);
+            const cleanSz = sz.replace(/[^a-zA-Z0-9]/g, '').toUpperCase().slice(0, 6);
+            const cSku = `${pSku}-${cleanCol}-${cleanSz}`;
+            currentMatrixData.push({
+              sku: cSku,
+              parentage: 'Child',
+              parentSku: pSku,
+              relationship: 'Variation',
+              theme: theme,
+              title: `${pTitle} - ${col}, ${sz}`,
+              color: col,
+              size: sz,
+              price: price.toFixed(2),
+              qty: qty
+            });
+          }
+        }
+      } else if (theme === 'ColorName') {
+        for (const col of attr1List) {
+          const cleanCol = col.replace(/[^a-zA-Z0-9]/g, '').toUpperCase().slice(0, 8);
+          const cSku = `${pSku}-${cleanCol}`;
+          currentMatrixData.push({
+            sku: cSku,
+            parentage: 'Child',
+            parentSku: pSku,
+            relationship: 'Variation',
+            theme: theme,
+            title: `${pTitle} - ${col}`,
+            color: col,
+            size: '',
+            price: price.toFixed(2),
+            qty: qty
+          });
+        }
+      } else {
+        for (const sz of attr1List) {
+          const cleanSz = sz.replace(/[^a-zA-Z0-9]/g, '').toUpperCase().slice(0, 8);
+          const cSku = `${pSku}-${cleanSz}`;
+          currentMatrixData.push({
+            sku: cSku,
+            parentage: 'Child',
+            parentSku: pSku,
+            relationship: 'Variation',
+            theme: theme,
+            title: `${pTitle} - ${sz}`,
+            color: '',
+            size: sz,
+            price: price.toFixed(2),
+            qty: qty
+          });
+        }
+      }
+
+      renderTable();
+    }
+
+    function renderTable() {
+      const tbody = document.getElementById('matrixBody');
+      tbody.innerHTML = '';
+      document.getElementById('totalRowsCount').textContent = currentMatrixData.length;
+
+      currentMatrixData.forEach(r => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td style="font-family:monospace; font-weight:600;">${r.sku}</td>
+          <td><span class="${r.parentage === 'Parent' ? 'tag-parent' : 'tag-child'}">${r.parentage}</span></td>
+          <td style="font-family:monospace;">${r.parentSku || '-'}</td>
+          <td>${r.relationship || '-'}</td>
+          <td>${r.theme}</td>
+          <td style="max-width:250px; overflow:hidden; text-overflow:ellipsis;" title="${r.title}">${r.title}</td>
+          <td>${r.color || '-'}</td>
+          <td>${r.size || '-'}</td>
+          <td style="font-weight:700;">${r.price ? '$' + r.price : '-'}</td>
+          <td>${r.qty || '-'}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function buildCsvContent() {
+      const headers = ['item_sku', 'parentage_level', 'parent_sku', 'relationship_type', 'variation_theme', 'item_name', 'color_name', 'size_name', 'standard_price', 'quantity'];
+      const rows = [headers.join(',')];
+      for (const row of currentMatrixData) {
+        const values = [
+          `"${row.sku}"`,
+          `"${row.parentage}"`,
+          `"${row.parentSku}"`,
+          `"${row.relationship}"`,
+          `"${row.theme}"`,
+          `"${row.title.replace(/"/g, '""')}"`,
+          `"${row.color}"`,
+          `"${row.size}"`,
+          `"${row.price}"`,
+          `"${row.qty}"`
+        ];
+        rows.push(values.join(','));
+      }
+      return '\uFEFF' + rows.join('\r\n');
+    }
+
+    function copyCsv() {
+      const csv = buildCsvContent();
+      navigator.clipboard.writeText(csv).then(() => {
+        alert('Copied CSV matrix to clipboard!');
+      });
+    }
+
+    function downloadCsv() {
+      const csv = buildCsvContent();
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Amazon_Variation_Matrix_${document.getElementById('parentSku').value || 'Export'}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    function loadSample() {
+      document.getElementById('parentSku').value = 'ACTIVE-SHORTS-2026';
+      document.getElementById('parentTitle').value = "Men's Athletic Quick-Dry Running Shorts with Zip Pockets";
+      document.getElementById('brandName').value = 'PeakMotion';
+      document.getElementById('themeSelect').value = 'ColorName-SizeName';
+      onThemeChange();
+      document.getElementById('attr1Inp').value = 'Jet Black, Slate Grey, Olive Green, Navy';
+      document.getElementById('attr2Inp').value = 'Small, Medium, Large, X-Large, XX-Large';
+      document.getElementById('basePrice').value = '24.99';
+      document.getElementById('baseQty').value = '150';
+      generateMatrix();
+    }
+
+    // Default load
+    generateMatrix();
+  </script>
+</body>
+</html>
