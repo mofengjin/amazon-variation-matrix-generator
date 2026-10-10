@@ -3,11 +3,11 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Privacy: 100% Offline](https://img.shields.io/badge/Privacy-100%25%20Offline-success.svg)](README.md)
 [![Amazon Flat File: 100% Compliant](https://img.shields.io/badge/Amazon%20Flat%20File-100%25%20Compliant-green.svg)](README.md)
-[![Purchase: Gumroad $29](https://img.shields.io/badge/Lifetime%20License-%2429%20USD-blueviolet.svg)](https://mofengjin.gumroad.com/l/amazon-variation-generator)
+[![Purchase: Gumroad $29](https://img.shields.io/badge/Lifetime%20License-%2429%20USD-blueviolet.svg)](https://mofengjin.gumroad.com/l/cebqbp)
 
 > **Build 50+ Parent-Child variations in 10 seconds. Auto-generate compliant Amazon Flat File CSV spreadsheets ready for Seller Central batch upload without Excel errors.**
 
-[Official Gumroad Checkout ($29 USD Lifetime License)](https://mofengjin.gumroad.com/l/amazon-variation-generator) | [Live Online Demo](https://mofenginto.github.io/amazon-variation-matrix-generator/)
+[Official Gumroad Checkout ($29 USD Lifetime License)](https://mofengjin.gumroad.com/l/cebqbp) | [Live Online Demo](https://mofenginto.github.io/amazon-variation-matrix-generator/)
 
 ---
 
@@ -45,6 +45,6 @@ Setting up multi-variation products (Color x Size x Pack Count) via Amazon Selle
 ## License & Purchase
 
 - **Lifetime License**: $29 USD (One-time payment)
-- **Instant Download**: [https://mofengjin.gumroad.com/l/amazon-variation-generator](https://mofengjin.gumroad.com/l/amazon-variation-generator)
+- **Instant Download**: [https://mofengjin.gumroad.com/l/cebqbp](https://mofengjin.gumroad.com/l/cebqbp)
 
 Copyright (c) 2026 SellerInsights. All rights reserved.
