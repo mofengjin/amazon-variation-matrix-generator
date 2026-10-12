@@ -4,10 +4,13 @@
 [![Privacy: 100% Offline](https://img.shields.io/badge/Privacy-100%25%20Offline-success.svg)](README.md)
 [![Amazon Flat File: 100% Compliant](https://img.shields.io/badge/Amazon%20Flat%20File-100%25%20Compliant-green.svg)](README.md)
 [![Purchase: Gumroad $29](https://img.shields.io/badge/Lifetime%20License-%2429%20USD-blueviolet.svg)](https://mofengjin.gumroad.com/l/cebqbp)
+[![All-in-One Suite: $59](https://img.shields.io/badge/Complete%20Suite%205--in--1-%2459%20USD%20(Save%2050%25)-success.svg)](https://mofengjin.gumroad.com/l/amazon-seller-suite)
 
 > **Build 50+ Parent-Child variations in 10 seconds. Auto-generate compliant Amazon Flat File CSV spreadsheets ready for Seller Central batch upload without Excel errors.**
+>
+> **Bundle & Save 50%:** Get all 5 standalone seller tools in one bundle for just **$59 USD** (Save $60+): [**Amazon SellerInsights Complete Suite (5-in-1 Lifetime Access)**](https://mofengjin.gumroad.com/l/amazon-seller-suite).
 
-[Official Gumroad Checkout ($29 USD Lifetime License)](https://mofengjin.gumroad.com/l/cebqbp) | [Live Online Demo](https://mofenginto.github.io/amazon-variation-matrix-generator/)
+[Official Gumroad Checkout ($29 USD Lifetime License)](https://mofengjin.gumroad.com/l/cebqbp) | [5-in-1 Complete Suite ($59 USD)](https://mofengjin.gumroad.com/l/amazon-seller-suite) | [Live Online Demo](https://mofenginto.github.io/amazon-variation-matrix-generator/)
 
 ---
 
