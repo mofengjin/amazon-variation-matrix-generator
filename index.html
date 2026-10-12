@@ -168,6 +168,22 @@
       border-radius: 4px;
       font-size: 0.75rem;
     }
+    .btn-preset {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #cbd5e1;
+      padding: 5px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.75rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .btn-preset:hover {
+      background: #2563eb;
+      color: #fff;
+      border-color: #2563eb;
+    }
   </style>
 </head>
 <body>
@@ -188,7 +204,18 @@
     <div class="card">
       <div class="card-title">
         <span>Variation Configuration</span>
-        <button class="btn btn-secondary" onclick="loadSample()">Load Sample</button>
+        <button class="btn btn-secondary" onclick="loadCategoryPreset('apparel')">Apparel Sample</button>
+      </div>
+
+      <div style="margin-bottom: 16px; padding: 10px; background: rgba(37,99,235,0.08); border: 1px solid rgba(37,99,235,0.25); border-radius: 8px;">
+        <div style="font-size: 0.75rem; font-weight: 700; color: #93c5fd; text-transform: uppercase; margin-bottom: 6px;">
+          Category Matrix Presets (1-Click Demo):
+        </div>
+        <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <button type="button" class="btn-preset" onclick="loadCategoryPreset('apparel')">Apparel (4x5 = 20 SKUs)</button>
+          <button type="button" class="btn-preset" onclick="loadCategoryPreset('tumbler')">Tumbler (6 Colors)</button>
+          <button type="button" class="btn-preset" onclick="loadCategoryPreset('pack')">Packs (1, 2, 4 Packs)</button>
+        </div>
       </div>
 
       <div class="input-group">
@@ -464,15 +491,39 @@
     }
 
     function loadSample() {
-      document.getElementById('parentSku').value = 'ACTIVE-SHORTS-2026';
-      document.getElementById('parentTitle').value = "Men's Athletic Quick-Dry Running Shorts with Zip Pockets";
-      document.getElementById('brandName').value = 'PeakMotion';
-      document.getElementById('themeSelect').value = 'ColorName-SizeName';
-      onThemeChange();
-      document.getElementById('attr1Inp').value = 'Jet Black, Slate Grey, Olive Green, Navy';
-      document.getElementById('attr2Inp').value = 'Small, Medium, Large, X-Large, XX-Large';
-      document.getElementById('basePrice').value = '24.99';
-      document.getElementById('baseQty').value = '150';
+      loadCategoryPreset('apparel');
+    }
+
+    function loadCategoryPreset(cat) {
+      if (cat === 'apparel') {
+        document.getElementById('parentSku').value = 'ACTIVE-SHORTS-2026';
+        document.getElementById('parentTitle').value = "Men's Athletic Quick-Dry Running Shorts with Zip Pockets";
+        document.getElementById('brandName').value = 'PeakMotion';
+        document.getElementById('themeSelect').value = 'ColorName-SizeName';
+        onThemeChange();
+        document.getElementById('attr1Inp').value = 'Jet Black, Slate Grey, Olive Green, Navy';
+        document.getElementById('attr2Inp').value = 'Small, Medium, Large, X-Large, XX-Large';
+        document.getElementById('basePrice').value = '24.99';
+        document.getElementById('baseQty').value = '150';
+      } else if (cat === 'tumbler') {
+        document.getElementById('parentSku').value = 'TUMBLER-32OZ-2026';
+        document.getElementById('parentTitle').value = "Insulated Stainless Steel Water Bottle 32oz with Straw Lid";
+        document.getElementById('brandName').value = 'HydroPro';
+        document.getElementById('themeSelect').value = 'ColorName';
+        onThemeChange();
+        document.getElementById('attr1Inp').value = 'Matte Black, Arctic White, Forest Green, Coral Pink, Ocean Blue, Sunset Orange';
+        document.getElementById('basePrice').value = '19.99';
+        document.getElementById('baseQty').value = '200';
+      } else if (cat === 'pack') {
+        document.getElementById('parentSku').value = 'FOOD-BAGS-SILICONE';
+        document.getElementById('parentTitle').value = "Reusable Silicone Food Storage Bags Leakproof Dishwasher Safe";
+        document.getElementById('brandName').value = 'EcoKitchen';
+        document.getElementById('themeSelect').value = 'ItemPackageQuantity';
+        onThemeChange();
+        document.getElementById('attr1Inp').value = '1 Pack (Single), 2 Pack (Duo), 4 Pack (Family Set)';
+        document.getElementById('basePrice').value = '15.99';
+        document.getElementById('baseQty').value = '100';
+      }
       generateMatrix();
     }
 
