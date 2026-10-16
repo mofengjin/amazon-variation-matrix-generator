@@ -1,53 +1,54 @@
 # Amazon Variation Matrix CSV Generator & Flat File Builder
 
+[English](#english) | [中文使用说明](#中文使用说明)
+
+---
+
+<a name="english"></a>
+## English
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Privacy: 100% Offline](https://img.shields.io/badge/Privacy-100%25%20Offline-success.svg)](README.md)
 [![Amazon Flat File: 100% Compliant](https://img.shields.io/badge/Amazon%20Flat%20File-100%25%20Compliant-green.svg)](README.md)
-[![Purchase: Gumroad $29](https://img.shields.io/badge/Lifetime%20License-%2429%20USD-blueviolet.svg)](https://mofengjin.gumroad.com/l/cebqbp)
-[![All-in-One Suite: $59](https://img.shields.io/badge/Complete%20Suite%205--in--1-%2459%20USD%20(Save%2050%25)-success.svg)](https://mofengjin.gumroad.com/l/amazon-seller-suite)
+[![Purchase: Gumroad $29](https://img.shields.io/badge/Lifetime%20License-%2429%20USD-blueviolet.svg)](https://mofengjin.gumroad.com/l/nwkpup)
+[![Sponsor: WeChat Pay](https://img.shields.io/badge/Sponsor-WeChat%20Pay-07C160.svg)](#sponsor--support)
 
-> **Build 50+ Parent-Child variations in 10 seconds. Auto-generate compliant Amazon Flat File CSV spreadsheets ready for Seller Central batch upload without Excel errors.**
->
-> **Bundle & Save 50%:** Get all 5 standalone seller tools in one bundle for just **$59 USD** (Save $60+): [**Amazon SellerInsights Complete Suite (5-in-1 Lifetime Access)**](https://mofengjin.gumroad.com/l/amazon-seller-suite).
+> **Build high-complexity Amazon parent-child variation matrices (Color, Size, Style) and export official Flat File CSVs in seconds without spreadsheet headaches.**
 
-[Official Gumroad Checkout ($29 USD Lifetime License)](https://mofengjin.gumroad.com/l/cebqbp) | [5-in-1 Complete Suite ($59 USD)](https://mofengjin.gumroad.com/l/amazon-seller-suite) | [Live Online Demo](https://mofenginto.github.io/amazon-variation-matrix-generator/)
+### Key Capabilities
+1. **Cartesian Product Generator**: Combines multi-dimensional attributes into clean child SKU pairs.
+2. **Amazon Inventory Loader Schema Compliance**: Follows official Parentage, Variation Theme, and Relationship rules.
+3. **Direct CSV Export**: Ready for direct upload to Amazon Seller Central Add Products via Upload.
 
----
+### Quick Start
+- Double-click `【双击使用】变体矩阵生成器 (离线网页版).html` in your browser.
 
-## The Nightmare of Manual Amazon Variations
+### Sponsor & Support
+- **International**: [Official Gumroad ($29 USD)](https://mofengjin.gumroad.com/l/nwkpup)
+- **WeChat Pay / 微信赞赏**:
 
-Setting up multi-variation products (Color x Size x Pack Count) via Amazon Seller Central or official 200-column Flat Files is notoriously frustrating:
-- **Error 8016**: The variation theme is not mapped properly between parent and child items.
-- **Split / Orphan Listings**: Child listings fail to bind to the parent SKU and scatter across search results.
-- **Hours of Repetitive Copy-Pasting**: 5 colors x 6 sizes means manually entering 30 distinct SKUs, barcodes, and titles.
-
-**SellerInsights Variation Generator** takes your base SKU, product title, and attribute lists, computes the Cartesian product instantly, and exports 100% compliant, UTF-8 BOM CSV files.
-
----
-
-## Key Features
-
-1. **Cartesian Product Auto-Generation**: Multiply colors, sizes, or packs in 1 click (e.g. 4 colors x 5 sizes = 20 child SKUs generated instantly).
-2. **Official Seller Central Flat File Compatibility**: Formats `item_sku`, `parentage_level`, `parent_sku`, `relationship_type`, and `variation_theme` strictly to Amazon specification.
-3. **Smart SKU Suffixing**: Auto-generates clean, readable child SKUs (e.g. `PARENT-JETBLA-SMALL`).
-4. **One-Click CSV Export & Clipboard Copy**: Download UTF-8 BOM CSV for direct upload or copy rows directly into Excel.
-5. **100% In-Memory Offline Security**: Zero cloud servers. Your unreleased product catalog and sourcing strategies stay 100% secure.
+<div align="center">
+  <img src="assets/wechat_sponsor.png" width="260" alt="WeChat Sponsor QR" />
+  <p><b>Scan with WeChat to support the creator</b></p>
+</div>
 
 ---
 
-## Quick Start
+<a name="中文使用说明"></a>
+## 中文使用说明
 
-1. Double-click `index.html` to run in any web browser.
-2. Enter your Parent SKU, Base Title, and select your Variation Theme.
-3. Enter your colors, sizes, or pack counts separated by commas.
-4. Click **"Generate Variation Matrix"** and **"Download Amazon CSV"**.
-5. Upload directly via Seller Central > Inventory > Add Products via Upload.
+> **亚马逊多属性父子变体笛卡尔积矩阵生成器 —— 告别复杂表格填报，一键生成官方兼容 Flat File CSV。**
 
----
+### 核心功能
+1. **多维属性笛卡尔积矩阵瞬时计算**：输入颜色、尺码、款式等维度，一秒自动生成全部子 SKU 变体组合。
+2. **父子关系 (Parentage) 架构合规化**：严格遵循亚马逊官方变体继承规范，自动标记 Parent / Child 角色与 Variation Theme。
+3. **官方上传表格一键导出**：一键生成 UTF-8 编码的 Flat File CSV，可直接在卖家后台“批量上传商品”处上传。
 
-## License & Purchase
+### 使用方法
+- 双击运行 `【双击使用】变体矩阵生成器 (离线网页版).html` 即可使用。
 
-- **Lifetime License**: $29 USD (One-time payment)
-- **Instant Download**: [https://mofengjin.gumroad.com/l/cebqbp](https://mofengjin.gumroad.com/l/cebqbp)
-
-Copyright (c) 2026 SellerInsights. All rights reserved.
+### 支持作者（请喝冰阔乐）
+<div align="center">
+  <img src="assets/wechat_sponsor.png" width="280" alt="微信赞赏码" />
+  <p><b>微信扫一扫 · 请作者喝瓶冰阔乐</b></p>
+</div>
